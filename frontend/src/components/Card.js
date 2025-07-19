@@ -1,7 +1,8 @@
 import React from "react";
+import "./Card.css";
 
-const Card = ({ children }) => (
-  <div style={{ border: '1px solid #ccc', borderRadius: 8, padding: 16 }}>
+const Card = ({ children, className = "" }) => (
+  <div className={`bnx-card ${className}`}>
     {children}
   </div>
 );

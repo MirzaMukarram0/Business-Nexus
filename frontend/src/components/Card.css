@@ -1,0 +1,9 @@
+.bnx-card {
+  background: rgba(34, 39, 63, 0.92);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 32px 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  min-width: 320px;
+  max-width: 420px;
+} 

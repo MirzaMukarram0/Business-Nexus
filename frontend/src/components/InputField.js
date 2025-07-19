@@ -1,9 +1,10 @@
 import React from "react";
+import "./InputField.css";
 
-const InputField = ({ label, ...props }) => (
-  <div>
-    {label && <label>{label}</label>}
-    <input {...props} />
+const InputField = ({ label, className = "", ...props }) => (
+  <div className="bnx-input-group">
+    {label && <label className="bnx-label">{label}</label>}
+    <input className={`bnx-input ${className}`} {...props} />
   </div>
 );
 

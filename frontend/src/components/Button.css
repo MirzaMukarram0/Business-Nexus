@@ -1,0 +1,35 @@
+.bnx-btn {
+  border: none;
+  border-radius: 16px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+  outline: none;
+  width: 100%;
+  color: #fff;
+  background: #232946;
+  box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.10);
+}
+
+.bnx-btn-gradient {
+  background: linear-gradient(90deg, #7f9cf5 0%, #232946 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px 0 rgba(127, 156, 245, 0.15);
+}
+
+.bnx-btn-lg {
+  font-size: 1.1rem;
+  padding: 12px 0;
+  border-radius: 18px;
+}
+
+.bnx-btn:active, .bnx-btn:focus {
+  outline: 2px solid #7f9cf5;
+}
+
+.bnx-btn:hover, .bnx-btn-gradient:hover {
+  background: linear-gradient(90deg, #232946 0%, #7f9cf5 100%);
+  color: #fff;
+} 

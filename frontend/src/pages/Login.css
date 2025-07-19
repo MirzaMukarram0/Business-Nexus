@@ -1,0 +1,56 @@
+.bnx-login-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #181c2b 0%, #232946 100%);
+}
+
+.bnx-card-login {
+  background: rgba(34, 39, 63, 0.92);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
+  padding: 40px 32px 32px 32px;
+  min-width: 340px;
+  max-width: 380px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.bnx-login-title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.bnx-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.bnx-error {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-bottom: 4px;
+  margin-top: -10px;
+  padding-left: 2px;
+}
+
+.bnx-login-footer {
+  margin-top: 22px;
+  text-align: center;
+  color: #bfc9d9;
+  font-size: 15px;
+}
+
+.bnx-login-footer a {
+  color: #7f9cf5;
+  text-decoration: none;
+  font-weight: 600;
+}
+.bnx-login-footer a:hover {
+  text-decoration: underline;
+} 
