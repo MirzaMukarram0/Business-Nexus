@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Card from "../components/Card";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 import "./Register.css";
 
 const validateEmail = (email) => {
@@ -22,6 +24,8 @@ const Register = () => {
   });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
+  const [apiError, setApiError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,14 +48,24 @@ const Register = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setApiError("");
     const validationErrors = validate();
     setErrors(validationErrors);
     setTouched({ email: true, password: true, confirmPassword: true, role: true });
     if (Object.keys(validationErrors).length === 0) {
-      // TODO: Implement registration logic
-      alert("Registration successful (mock)");
+      try {
+        await api.post('/auth/register', {
+          name: form.email.split('@')[0], // Use part before @ as name for demo
+          email: form.email,
+          password: form.password,
+          role: form.role.toLowerCase()
+        });
+        navigate('/login');
+      } catch (err) {
+        setApiError(err.response?.data?.message || 'Registration failed');
+      }
     }
   };
 
@@ -129,6 +143,7 @@ const Register = () => {
               <div className="bnx-error">{errors.role}</div>
             )}
           </div>
+          {apiError && <div className="bnx-error">{apiError}</div>}
           <Button type="submit" className="bnx-btn-gradient bnx-btn-lg">
             Register
           </Button>

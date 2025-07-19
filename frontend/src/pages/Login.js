@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Card from "../components/Card";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 
 const validateEmail = (email) => {
@@ -13,6 +15,8 @@ const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
+  const [apiError, setApiError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,14 +35,30 @@ const Login = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setApiError("");
     const validationErrors = validate();
     setErrors(validationErrors);
     setTouched({ email: true, password: true });
     if (Object.keys(validationErrors).length === 0) {
-      // TODO: Implement login logic
-      alert("Login successful (mock)");
+      try {
+        const res = await api.post('/auth/login', {
+          email: form.email,
+          password: form.password
+        });
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('role', res.data.role);
+        if (res.data.role === 'investor') {
+          navigate('/dashboard/investor');
+        } else if (res.data.role === 'entrepreneur') {
+          navigate('/dashboard/entrepreneur');
+        } else {
+          navigate('/');
+        }
+      } catch (err) {
+        setApiError(err.response?.data?.message || 'Login failed');
+      }
     }
   };
 
@@ -73,6 +93,7 @@ const Login = () => {
           {touched.password && errors.password && (
             <div className="bnx-error">{errors.password}</div>
           )}
+          {apiError && <div className="bnx-error">{apiError}</div>}
           <Button type="submit" className="bnx-btn-gradient bnx-btn-lg">
             Login
           </Button>
