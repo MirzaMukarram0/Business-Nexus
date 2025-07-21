@@ -60,7 +60,7 @@ const Register = () => {
           name: form.email.split('@')[0], // Use part before @ as name for demo
           email: form.email,
           password: form.password,
-          role: form.role.toLowerCase()
+          role: form.role.charAt(0).toUpperCase() + form.role.slice(1).toLowerCase()
         });
         navigate('/login');
       } catch (err) {
