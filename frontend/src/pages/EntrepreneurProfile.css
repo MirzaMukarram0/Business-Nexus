@@ -1,0 +1,35 @@
+/* Entrepreneur Profile Styles */
+.bnx-profile-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #181c2b 0%, #232946 100%);
+  padding-top: 40px;
+}
+.bnx-profile-title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.bnx-card-profile {
+  background: rgba(34, 39, 63, 0.92);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
+  padding: 32px 24px 24px 24px;
+  min-width: 320px;
+  max-width: 400px;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.bnx-profile-section {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #e0e6f7;
+} 

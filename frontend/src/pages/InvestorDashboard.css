@@ -1,0 +1,55 @@
+/* Investor Dashboard Styles */
+.bnx-dashboard-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #181c2b 0%, #232946 100%);
+  padding-top: 40px;
+}
+.bnx-dashboard-title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.bnx-dashboard-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+.bnx-card-dashboard {
+  background: rgba(34, 39, 63, 0.92);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
+  padding: 32px 24px 24px 24px;
+  min-width: 320px;
+  max-width: 400px;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.bnx-card-header {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.bnx-card-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #7f9cf5;
+}
+.bnx-card-subtitle {
+  font-size: 1rem;
+  color: #bfc9d9;
+  margin-left: 8px;
+}
+.bnx-card-body {
+  font-size: 1rem;
+  color: #e0e6f7;
+  margin-bottom: 12px;
+} 

@@ -1,11 +1,12 @@
 import React from "react";
+import "./DashboardLayout.css";
 
 const DashboardLayout = ({ children }) => (
-  <div>
-    <nav style={{ background: '#eee', padding: 10 }}>Navbar</nav>
-    <div style={{ display: 'flex' }}>
-      <aside style={{ width: 200, background: '#f4f4f4', minHeight: '100vh' }}>Sidebar</aside>
-      <main style={{ flex: 1, padding: 20 }}>{children}</main>
+  <div className="bnx-dashboard-layout">
+    <nav className="bnx-dashboard-navbar">Navbar</nav>
+    <div className="bnx-dashboard-content">
+      <aside className="bnx-dashboard-sidebar">Sidebar</aside>
+      <main className="bnx-dashboard-main">{children}</main>
     </div>
   </div>
 );
