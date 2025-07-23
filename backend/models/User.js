@@ -22,6 +22,37 @@ const userSchema = new mongoose.Schema({
     enum: ['Entrepreneur', 'Investor'],
     required: true
   },
+  // Profile fields
+  bio: {
+    type: String,
+    default: ''
+  },
+  // Entrepreneur fields
+  startup: {
+    type: String,
+    default: ''
+  },
+  startupDescription: {
+    type: String,
+    default: ''
+  },
+  fundingNeed: {
+    type: String,
+    default: ''
+  },
+  pitchDeck: {
+    type: String,
+    default: '' // Could be a URL or file reference
+  },
+  // Investor fields
+  investmentInterests: {
+    type: String,
+    default: ''
+  },
+  portfolio: {
+    type: [String],
+    default: []
+  },
   createdAt: {
     type: Date,
     default: Date.now
