@@ -13,4 +13,15 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Chat APIs
+export const getMessages = (userId) => api.get(`/chat/${userId}`);
+
+// Request APIs
+export const sendRequest = (data) => api.post('/request', data);
+export const getRequests = () => api.get('/request');
+export const updateRequestStatus = (requestId, status) => api.put(`/request/${requestId}`, { status });
+
+// Profile APIs
+export const getProfile = (id, role) => api.get(`/profile/${role}/${id}`);
+
 export default api; 

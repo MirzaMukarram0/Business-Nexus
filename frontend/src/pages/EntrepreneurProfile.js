@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
+import { useParams } from 'react-router-dom';
+import { getProfile } from '../services/api';
 import "./EntrepreneurProfile.css";
 
-const mockProfile = {
-  name: "Alice Smith",
-  bio: "Passionate entrepreneur in green energy.",
-  startup: "GreenTech",
-  description: "Developing affordable solar panels for urban homes.",
-  funding: "$500,000",
-  pitchDeck: null // Placeholder
+const EntrepreneurProfile = () => {
+  const { id } = useParams();
+  const [profile, setProfile] = useState(null);
+  useEffect(() => {
+    getProfile(id, 'entrepreneur').then(res => setProfile(res.data));
+  }, [id]);
+  if (!profile) return <div>Loading...</div>;
+  return (
+    <div className="bnx-profile-root">
+      <Card className="bnx-card-profile">
+        <h2 className="bnx-profile-title">{profile.name}</h2>
+        <div className="bnx-profile-section"><b>Bio:</b> {profile.bio}</div>
+        <div className="bnx-profile-section"><b>Startup:</b> {profile.startup}</div>
+        <div className="bnx-profile-section"><b>Description:</b> {profile.startupDescription}</div>
+        <div className="bnx-profile-section"><b>Funding Need:</b> {profile.fundingNeed}</div>
+        <div className="bnx-profile-section"><b>Pitch Deck:</b> <span style={{ color: '#888' }}>{profile.pitchDeck || '[Upload/Link Placeholder]'}</span></div>
+      </Card>
+    </div>
+  );
 };
-
-const EntrepreneurProfile = () => (
-  <div className="bnx-profile-root">
-    <Card className="bnx-card-profile">
-      <h2 className="bnx-profile-title">{mockProfile.name}</h2>
-      <div className="bnx-profile-section"><b>Bio:</b> {mockProfile.bio}</div>
-      <div className="bnx-profile-section"><b>Startup:</b> {mockProfile.startup}</div>
-      <div className="bnx-profile-section"><b>Description:</b> {mockProfile.description}</div>
-      <div className="bnx-profile-section"><b>Funding Need:</b> {mockProfile.funding}</div>
-      <div className="bnx-profile-section"><b>Pitch Deck:</b> <span style={{ color: '#888' }}>[Upload/Link Placeholder]</span></div>
-    </Card>
-  </div>
-);
 
 export default EntrepreneurProfile; 

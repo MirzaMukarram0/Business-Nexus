@@ -49,6 +49,8 @@ const Login = () => {
         });
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('role', res.data.role);
+        localStorage.setItem('userId', res.data.userId || '');
+        localStorage.setItem('userName', res.data.userName || '');
         if (res.data.role === 'investor') {
           navigate('/dashboard/investor');
         } else if (res.data.role === 'entrepreneur') {
