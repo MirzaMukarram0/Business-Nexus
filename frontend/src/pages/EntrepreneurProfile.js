@@ -8,7 +8,7 @@ const EntrepreneurProfile = () => {
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
   useEffect(() => {
-    getProfile(id, 'entrepreneur').then(res => setProfile(res.data));
+    getProfile(id).then(res => setProfile(res.data));
   }, [id]);
   if (!profile) return <div>Loading...</div>;
   return (

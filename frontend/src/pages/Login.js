@@ -51,9 +51,10 @@ const Login = () => {
         localStorage.setItem('role', res.data.role);
         localStorage.setItem('userId', res.data.userId || '');
         localStorage.setItem('userName', res.data.userName || '');
-        if (res.data.role === 'investor') {
+        const role = (res.data.role || '').toLowerCase();
+        if (role === 'investor') {
           navigate('/dashboard/investor');
-        } else if (res.data.role === 'entrepreneur') {
+        } else if (role === 'entrepreneur') {
           navigate('/dashboard/entrepreneur');
         } else {
           navigate('/');

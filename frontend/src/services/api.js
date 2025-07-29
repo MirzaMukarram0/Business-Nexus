@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const api = axios.create({
   baseURL: 'http://localhost:5000/api',
 });
@@ -13,15 +14,24 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Update the getRequests function to include the authentication headers
+export const getRequests = () => {
+  return api.get('/requests', {
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+};
+
+// ... other API functions ...
 // Chat APIs
 export const getMessages = (userId) => api.get(`/chat/${userId}`);
 
 // Request APIs
 export const sendRequest = (data) => api.post('/request', data);
-export const getRequests = () => api.get('/request');
-export const updateRequestStatus = (requestId, status) => api.put(`/request/${requestId}`, { status });
+export const updateRequestStatus = (requestId, status) => api.patch(`/request/${requestId}`, { status });
 
 // Profile APIs
-export const getProfile = (id, role) => api.get(`/profile/${role}/${id}`);
+export const getProfile = (id) => api.get(`/profile/${id}`);
 
 export default api; 

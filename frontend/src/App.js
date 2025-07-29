@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import InvestorDashboard from "./pages/InvestorDashboard";
@@ -9,6 +9,8 @@ import EntrepreneurProfile from "./pages/EntrepreneurProfile";
 import Chat from "./pages/Chat";
 
 function App() {
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
   return (
     <Router>
       <Routes>
@@ -19,6 +21,13 @@ function App() {
         <Route path="/profile/investor/:id" element={<InvestorProfile />} />
         <Route path="/profile/entrepreneur/:id" element={<EntrepreneurProfile />} />
         <Route path="/chat/:userId" element={<Chat />} />
+        <Route path="*" element={
+          token ? (
+            role === 'investor' ? <Navigate to="/dashboard/investor" /> :
+            role === 'entrepreneur' ? <Navigate to="/dashboard/entrepreneur" /> :
+            <Navigate to="/login" />
+          ) : <Navigate to="/login" />
+        } />
       </Routes>
     </Router>
   );
