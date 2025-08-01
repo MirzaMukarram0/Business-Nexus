@@ -7,6 +7,8 @@ const { Server } = require('socket.io');
 const Message = require('./models/Message');
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+const server = http.createServer(app);
 
 // Middleware
 app.use(express.json());
@@ -35,8 +37,6 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .catch((err) => console.error('MongoDB connection error:', err));
 
-const PORT = process.env.PORT || 5000;
-const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: '*',

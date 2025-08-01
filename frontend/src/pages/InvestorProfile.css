@@ -1,35 +1,328 @@
 /* Investor Profile Styles */
-.bnx-profile-root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, #181c2b 0%, #232946 100%);
-  padding-top: 40px;
+.bnx-profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
-.bnx-profile-title {
-  color: #fff;
+
+/* About Section Styles */
+.bnx-about-section {
+  padding: 60px 0;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.bnx-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.bnx-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.bnx-col-lg-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.bnx-col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.bnx-col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.bnx-col-lg-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+}
+
+.bnx-align-items-center {
+  align-items: center;
+}
+
+.bnx-flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.bnx-text-center {
+  text-align: center;
+}
+
+.bnx-m-0px {
+  margin: 0;
+}
+
+.bnx-font-w-600 {
+  font-weight: 600;
+}
+
+.bnx-h2 {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 28px;
-  text-align: center;
-  letter-spacing: 1px;
 }
-.bnx-card-profile {
-  background: rgba(34, 39, 63, 0.92);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  border-radius: 20px;
-  padding: 32px 24px 24px 24px;
-  min-width: 320px;
-  max-width: 400px;
-  border: 1px solid rgba(255,255,255,0.08);
+
+.bnx-lead {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* About Text Styles */
+.bnx-about-text h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px;
   color: #fff;
+}
+
+.bnx-about-text h6 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #7f9cf5;
+}
+
+.bnx-about-text p {
+  font-size: 1.1rem;
+  max-width: 500px;
+  color: #b8c5d6;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.bnx-about-text p mark {
+  font-weight: 600;
+  color: #7f9cf5;
+  background: linear-gradient(rgba(127, 156, 245, 0.3), rgba(127, 156, 245, 0.3));
+  background-size: 100% 3px;
+  background-repeat: no-repeat;
+  background-position: 0 bottom;
+  background-color: transparent;
+  padding: 0;
+  color: #7f9cf5;
+}
+
+/* About List Styles */
+.bnx-about-list {
+  padding-top: 20px;
+}
+
+.bnx-about-list .bnx-media {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.bnx-about-list label {
+  color: #7f9cf5;
+  font-weight: 600;
+  width: 120px;
+  margin: 0;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.bnx-about-list label:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 15px;
+  width: 1px;
+  height: 12px;
+  background: #7f9cf5;
+  transform: rotate(15deg);
+  margin: auto;
+  opacity: 0.5;
+}
+
+.bnx-about-list p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #b8c5d6;
+  flex: 1;
+}
+
+/* About Avatar Styles */
+.bnx-about-avatar {
+  text-align: center;
+}
+
+.bnx-profile-avatar-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7f9cf5 0%, #667eea 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 8px 32px rgba(127, 156, 245, 0.3);
+  margin: 0 auto;
+}
+
+/* Theme Colors */
+.bnx-theme-color {
+  color: #7f9cf5;
+}
+
+.bnx-dark-color {
+  color: #fff;
+}
+
+/* Profile Card Styles */
+.bnx-profile-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+}
+
+.bnx-profile-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 24px;
 }
-.bnx-profile-section {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  color: #e0e6f7;
+
+.bnx-profile-field {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bnx-profile-field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.bnx-profile-field-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.bnx-profile-field-value {
+  font-size: 16px;
+  color: #b8c5d6;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.bnx-profile-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bnx-profile-textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.bnx-profile-textarea:focus {
+  outline: none;
+  border-color: #7f9cf5;
+  box-shadow: 0 0 0 2px rgba(127, 156, 245, 0.2);
+}
+
+.bnx-profile-edit-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.bnx-profile-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #7f9cf5;
+  font-size: 18px;
+}
+
+/* Responsive design */
+@media (max-width: 991px) {
+  .bnx-about-avatar {
+    margin-top: 30px;
+  }
+  
+  .bnx-col-lg-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .bnx-col-lg-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .bnx-about-text h3 {
+    font-size: 2rem;
+  }
+  
+  .bnx-about-text h6 {
+    font-size: 1rem;
+  }
+  
+  .bnx-about-text p {
+    font-size: 1rem;
+  }
+  
+  .bnx-profile-avatar-placeholder {
+    width: 150px;
+    height: 150px;
+    font-size: 3rem;
+  }
+  
+  .bnx-col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .bnx-col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bnx-profile-container {
+    padding: 10px;
+  }
+  
+  .bnx-profile-card {
+    padding: 20px;
+  }
+  
+  .bnx-profile-edit-actions {
+    flex-direction: column;
+  }
 } 

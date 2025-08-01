@@ -48,10 +48,10 @@ const Login = () => {
           password: form.password
         });
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('role', res.data.role);
+        localStorage.setItem('role', res.data.role.toLowerCase()); // Store role in lowercase
         localStorage.setItem('userId', res.data.userId || '');
         localStorage.setItem('userName', res.data.userName || '');
-        const role = (res.data.role || '').toLowerCase();
+        const role = (res.data.role || '').toLowerCase(); // Use lowercase for comparison
         if (role === 'investor') {
           navigate('/dashboard/investor');
         } else if (role === 'entrepreneur') {
@@ -101,8 +101,16 @@ const Login = () => {
             Login
           </Button>
         </form>
-        <div className="bnx-login-footer">
-          Don't have an account? <a href="/register">Register</a>
+        <div className="bnx-form-footer">
+          <p>
+            Don't have an account?{" "}
+            <button
+              className="bnx-link"
+              onClick={() => navigate('/register')}
+            >
+              Register here
+            </button>
+          </p>
         </div>
       </Card>
     </div>

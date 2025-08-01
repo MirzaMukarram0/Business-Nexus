@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['Entrepreneur', 'Investor'],
+    enum: ['entrepreneur', 'investor'],
     required: true
   },
   // Profile fields

@@ -23,7 +23,10 @@ const Chat = () => {
     // Join chat room
     socket.emit('joinRoom', { userId: user.id, otherUserId: userId });
     // Fetch messages
-    getMessages(userId).then(res => setMessages(res.data));
+    getMessages(userId).then(res => {
+      console.log('Fetched messages:', res.data);
+      setMessages(res.data);
+    });
     // Listen for new messages
     socket.on('receiveMessage', (msg) => {
       if ((msg.senderId === user.id && msg.receiverId === userId) || (msg.senderId === userId && msg.receiverId === user.id)) {
@@ -59,16 +62,19 @@ const Chat = () => {
           <span className={`bnx-chat-status ${online ? 'online' : 'offline'}`}>{online ? 'Online' : 'Offline'}</span>
         </div>
         <div className="bnx-chat-messages">
-          {messages.map((msg, idx) => (
-            <div key={idx} className={`bnx-chat-message ${msg.senderId === user.id ? 'sent' : 'received'}`}> 
-              <div className="bnx-chat-meta">
-                <Avatar src="/avatar.png" alt={msg.senderId === user.id ? user.name : otherUser.name} />
-                <span className="bnx-chat-sender">{msg.senderId === user.id ? 'You' : otherUser.name}</span>
-                <span className="bnx-chat-timestamp">{new Date(msg.timestamp).toLocaleTimeString()}</span>
+          {messages.map((msg, idx) => {
+            const isSentByMe = String(msg.senderId._id || msg.senderId) === String(user.id);
+            return (
+              <div key={idx} className={`bnx-chat-message ${isSentByMe ? 'sent' : 'received'}`}> 
+                <div className="bnx-chat-meta">
+                  <Avatar src="/avatar.png" alt={isSentByMe ? user.name : otherUser.name} />
+                  <span className="bnx-chat-sender">{isSentByMe ? 'You' : otherUser.name}</span>
+                  <span className="bnx-chat-timestamp">{new Date(msg.timestamp).toLocaleTimeString()}</span>
+                </div>
+                <div className="bnx-chat-bubble">{msg.message}</div>
               </div>
-              <div className="bnx-chat-bubble">{msg.message}</div>
-            </div>
-          ))}
+            );
+          })}
           <div ref={messagesEndRef} />
         </div>
         <form className="bnx-chat-input-row" onSubmit={handleSend}>

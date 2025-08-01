@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     // Normalize role to match enum (capitalize first letter)
-    const normalizedRole = role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
+    const normalizedRole = role.charAt(0).toLowerCase() + role.slice(1).toLowerCase();
     // Create user
     user = new User({
       name,

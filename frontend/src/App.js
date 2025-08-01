@@ -7,6 +7,12 @@ import EntrepreneurDashboard from "./pages/EntrepreneurDashboard";
 import InvestorProfile from "./pages/InvestorProfile";
 import EntrepreneurProfile from "./pages/EntrepreneurProfile";
 import Chat from "./pages/Chat";
+import PostRequest from './pages/PostRequest';
+
+function PrivateRoute({ children }) {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" />;
+}
 
 function App() {
   const token = localStorage.getItem('token');
@@ -16,18 +22,14 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard/investor" element={<InvestorDashboard />} />
-        <Route path="/dashboard/entrepreneur" element={<EntrepreneurDashboard />} />
-        <Route path="/profile/investor/:id" element={<InvestorProfile />} />
-        <Route path="/profile/entrepreneur/:id" element={<EntrepreneurProfile />} />
-        <Route path="/chat/:userId" element={<Chat />} />
-        <Route path="*" element={
-          token ? (
-            role === 'investor' ? <Navigate to="/dashboard/investor" /> :
-            role === 'entrepreneur' ? <Navigate to="/dashboard/entrepreneur" /> :
-            <Navigate to="/login" />
-          ) : <Navigate to="/login" />
-        } />
+        <Route path="/dashboard/investor" element={<PrivateRoute><InvestorDashboard /></PrivateRoute>} />
+        <Route path="/dashboard/entrepreneur" element={<PrivateRoute><EntrepreneurDashboard /></PrivateRoute>} />
+        <Route path="/profile/investor/:id" element={<PrivateRoute><InvestorProfile /></PrivateRoute>} />
+        <Route path="/profile/entrepreneur/:id" element={<PrivateRoute><EntrepreneurProfile /></PrivateRoute>} />
+        <Route path="/chat/:userId" element={<PrivateRoute><Chat /></PrivateRoute>} />
+        <Route path="/post-request" element={<PrivateRoute><PostRequest /></PrivateRoute>} />
+        {/* Add Post Request and Request Details routes here later */}
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );

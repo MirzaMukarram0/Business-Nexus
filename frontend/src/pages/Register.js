@@ -60,7 +60,7 @@ const Register = () => {
           name: form.email.split('@')[0], // Use part before @ as name for demo
           email: form.email,
           password: form.password,
-          role: form.role.charAt(0).toUpperCase() + form.role.slice(1).toLowerCase()
+          role: form.role.toLowerCase() // Use lowercase consistently
         });
         navigate('/login');
       } catch (err) {
@@ -113,32 +113,20 @@ const Register = () => {
           {touched.confirmPassword && errors.confirmPassword && (
             <div className="bnx-error">{errors.confirmPassword}</div>
           )}
-          <div className="bnx-role-group">
+          <div className="bnx-form-group">
             <label className="bnx-label">Role</label>
-            <div className="bnx-role-options">
-              <label className="bnx-role-option">
-                <input
-                  type="radio"
-                  name="role"
-                  value="Investor"
-                  checked={form.role === "Investor"}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                Investor
-              </label>
-              <label className="bnx-role-option">
-                <input
-                  type="radio"
-                  name="role"
-                  value="Entrepreneur"
-                  checked={form.role === "Entrepreneur"}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                Entrepreneur
-              </label>
-            </div>
+            <select
+              name="role"
+              value={form.role}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="bnx-select"
+              required
+            >
+              <option value="">Select a role</option>
+              <option value="entrepreneur">Entrepreneur</option>
+              <option value="investor">Investor</option>
+            </select>
             {touched.role && errors.role && (
               <div className="bnx-error">{errors.role}</div>
             )}
@@ -148,8 +136,16 @@ const Register = () => {
             Register
           </Button>
         </form>
-        <div className="bnx-register-footer">
-          Already have an account? <a href="/login">Login</a>
+        <div className="bnx-form-footer">
+          <p>
+            Already have an account?{" "}
+            <button
+              className="bnx-link"
+              onClick={() => navigate('/login')}
+            >
+              Login here
+            </button>
+          </p>
         </div>
       </Card>
     </div>

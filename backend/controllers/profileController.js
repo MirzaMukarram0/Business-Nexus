@@ -10,8 +10,42 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-exports.updateProfile = (req, res) => {
-  res.json({ message: 'updateProfile placeholder' });
+exports.updateProfile = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+    
+    // Check if user is updating their own profile
+    if (String(id) !== String(userId)) {
+      return res.status(403).json({ message: 'Not authorized to update this profile' });
+    }
+    
+    const updateData = req.body;
+    const allowedFields = ['name', 'bio', 'startup', 'startupDescription', 'fundingNeed', 'pitchDeck', 'investmentInterests', 'portfolio'];
+    
+    // Filter out non-allowed fields
+    const filteredData = {};
+    Object.keys(updateData).forEach(key => {
+      if (allowedFields.includes(key)) {
+        filteredData[key] = updateData[key];
+      }
+    });
+    
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      filteredData,
+      { new: true, runValidators: true }
+    );
+    
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    res.json(updatedUser);
+  } catch (err) {
+    console.error('Error updating profile:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
 };
 
 exports.getEntrepreneurs = async (req, res) => {

@@ -8,5 +8,8 @@ const auth = require('../middlewares/auth'); // Add this line
 router.post('/request', auth, requestController.sendRequest); // Protect sendRequest
 router.get('/requests', auth, requestController.getRequests); // Protect getRequests
 router.patch('/request/:id', auth, requestController.updateRequestStatus); // Protect updateRequestStatus
+router.post('/entrepreneur-requests', auth, requestController.postEntrepreneurRequest);
+router.get('/entrepreneur-requests', auth, requestController.getEntrepreneurRequests);
+router.delete('/entrepreneur-requests/:id', auth, requestController.deleteEntrepreneurRequest);
 
 module.exports = router;

@@ -26,6 +26,7 @@ export const getRequests = () => {
 // ... other API functions ...
 // Chat APIs
 export const getMessages = (userId) => api.get(`/chat/${userId}`);
+export const getConversations = () => api.get('/chat/conversations');
 
 // Request APIs
 export const sendRequest = (data) => api.post('/request', data);
