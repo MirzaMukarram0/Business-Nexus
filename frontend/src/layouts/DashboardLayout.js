@@ -38,7 +38,7 @@ const DashboardLayout = ({ children }) => {
   // Update active tab when URL changes
   useEffect(() => {
     setActiveTab(getActiveTab());
-  }, [location.pathname, searchParams]);
+  }, [location.pathname, searchParams, getActiveTab]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);

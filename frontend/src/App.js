@@ -15,8 +15,6 @@ function PrivateRoute({ children }) {
 }
 
 function App() {
-  const token = localStorage.getItem('token');
-  const role = localStorage.getItem('role');
   return (
     <Router>
       <Routes>
