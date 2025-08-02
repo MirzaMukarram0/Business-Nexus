@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Card from "../components/Card";
 import Button from "../components/Button";
+import AnalyticsDashboard from "../components/AnalyticsDashboard";
 import { getRequests, updateRequestStatus, getMessages, getConversations } from '../services/api';
 import api from '../services/api';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -79,6 +80,11 @@ const EntrepreneurDashboard = () => {
   return (
     <DashboardLayout>
       <div className="bnx-dashboard-root">
+        {/* Analytics Dashboard - Only show on requests tab */}
+        {activeTab === 'requests' && (
+          <AnalyticsDashboard />
+        )}
+        
         {activeTab === 'requests' && (
           <>
             <h2 className="bnx-dashboard-title">Collaboration Requests</h2>

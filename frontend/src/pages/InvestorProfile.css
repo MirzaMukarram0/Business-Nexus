@@ -1,208 +1,97 @@
 /* Investor Profile Styles */
 .bnx-profile-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* About Section Styles */
-.bnx-about-section {
-  padding: 60px 0;
-  position: relative;
-  margin-bottom: 40px;
-}
-
-.bnx-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.bnx-row {
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
-  margin: 0 -15px;
-}
-
-.bnx-col-lg-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-  padding: 0 15px;
-}
-
-.bnx-col-md-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-  padding: 0 15px;
-}
-
-.bnx-col-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-  padding: 0 15px;
-}
-
-.bnx-col-lg-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
-  padding: 0 15px;
-}
-
-.bnx-align-items-center {
+  flex-direction: column;
   align-items: center;
+  background: linear-gradient(135deg, #181c2b 0%, #232946 100%);
+  padding-top: 40px;
 }
 
-.bnx-flex-row-reverse {
-  flex-direction: row-reverse;
-}
-
-.bnx-text-center {
-  text-align: center;
-}
-
-.bnx-m-0px {
-  margin: 0;
-}
-
-.bnx-font-w-600 {
-  font-weight: 600;
-}
-
-.bnx-h2 {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.bnx-lead {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-/* About Text Styles */
-.bnx-about-text h3 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 10px;
+.bnx-profile-card {
+  background: rgba(34, 39, 63, 0.92);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.bnx-about-text h6 {
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #7f9cf5;
-}
-
-.bnx-about-text p {
-  font-size: 1.1rem;
-  max-width: 500px;
-  color: #b8c5d6;
-  line-height: 1.6;
-  margin-bottom: 30px;
-}
-
-.bnx-about-text p mark {
-  font-weight: 600;
-  color: #7f9cf5;
-  background: linear-gradient(rgba(127, 156, 245, 0.3), rgba(127, 156, 245, 0.3));
-  background-size: 100% 3px;
-  background-repeat: no-repeat;
-  background-position: 0 bottom;
-  background-color: transparent;
-  padding: 0;
-  color: #7f9cf5;
-}
-
-/* About List Styles */
-.bnx-about-list {
-  padding-top: 20px;
-}
-
-.bnx-about-list .bnx-media {
-  padding: 8px 0;
+.bnx-profile-layout {
   display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Left Side - Profile Picture */
+.bnx-profile-picture-section {
+  flex-shrink: 0;
+}
+
+.bnx-profile-avatar {
+  display: flex;
+  justify-content: center;
   align-items: center;
-}
-
-.bnx-about-list label {
-  color: #7f9cf5;
-  font-weight: 600;
-  width: 120px;
-  margin: 0;
-  position: relative;
-  font-size: 0.9rem;
-}
-
-.bnx-about-list label:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 15px;
-  width: 1px;
-  height: 12px;
-  background: #7f9cf5;
-  transform: rotate(15deg);
-  margin: auto;
-  opacity: 0.5;
-}
-
-.bnx-about-list p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #b8c5d6;
-  flex: 1;
-}
-
-/* About Avatar Styles */
-.bnx-about-avatar {
-  text-align: center;
 }
 
 .bnx-profile-avatar-placeholder {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7f9cf5 0%, #667eea 100%);
+  background: linear-gradient(135deg, #7f9cf5 0%, #fc5356 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-  font-weight: 600;
-  color: white;
-  box-shadow: 0 8px 32px rgba(127, 156, 245, 0.3);
-  margin: 0 auto;
-}
-
-/* Theme Colors */
-.bnx-theme-color {
-  color: #7f9cf5;
-}
-
-.bnx-dark-color {
+  font-weight: 700;
   color: #fff;
+  box-shadow: 0 8px 32px 0 rgba(127, 156, 245, 0.3);
+  border: 4px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Profile Card Styles */
-.bnx-profile-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+/* Right Side - Profile Details */
+.bnx-profile-details-section {
+  flex: 1;
+  min-width: 0;
 }
 
-.bnx-profile-content {
+.bnx-profile-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bnx-profile-name {
+  color: #7f9cf5;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+}
+
+.bnx-profile-role {
+  color: #fc5356;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bnx-profile-fields {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 25px;
 }
 
 .bnx-profile-field {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .bnx-profile-field-header {
@@ -213,17 +102,18 @@
 }
 
 .bnx-profile-field-label {
-  font-size: 18px;
+  color: #7f9cf5;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #fff;
   margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .bnx-profile-field-value {
-  font-size: 16px;
-  color: #b8c5d6;
+  color: #bfc9d9;
+  font-size: 1rem;
   line-height: 1.6;
-  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .bnx-profile-edit {
@@ -234,15 +124,16 @@
 
 .bnx-profile-textarea {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  min-height: 80px;
+  max-height: 120px;
   padding: 12px;
+  border: 1px solid rgba(127, 156, 245, 0.3);
+  border-radius: 8px;
+  background: rgba(34, 39, 63, 0.8);
   color: #fff;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: inherit;
   resize: vertical;
-  min-height: 100px;
 }
 
 .bnx-profile-textarea:focus {
@@ -255,74 +146,102 @@
   display: flex;
   gap: 12px;
   justify-content: flex-end;
+  padding: 8px 0;
+}
+
+.bnx-profile-edit-actions button {
+  min-width: 80px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .bnx-profile-loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  color: #7f9cf5;
-  font-size: 18px;
+  min-height: 400px;
+  color: #bfc9d9;
+  font-size: 1.2rem;
 }
 
-/* Responsive design */
-@media (max-width: 991px) {
-  .bnx-about-avatar {
-    margin-top: 30px;
-  }
-  
-  .bnx-col-lg-6 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  
-  .bnx-col-lg-3 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
+/* Logout Button Styles */
+.bnx-profile-logout-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
 }
 
-@media (max-width: 767px) {
-  .bnx-about-text h3 {
-    font-size: 2rem;
-  }
-  
-  .bnx-about-text h6 {
-    font-size: 1rem;
-  }
-  
-  .bnx-about-text p {
-    font-size: 1rem;
+.bnx-profile-logout-button {
+  background: linear-gradient(135deg, #fc5356 0%, #e74c3c 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(252, 83, 86, 0.3);
+}
+
+.bnx-profile-logout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(252, 83, 86, 0.4);
+}
+
+.bnx-profile-logout-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bnx-profile-layout {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
   }
   
   .bnx-profile-avatar-placeholder {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     font-size: 3rem;
   }
   
-  .bnx-col-md-6 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  
-  .bnx-col-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-@media (max-width: 768px) {
-  .bnx-profile-container {
-    padding: 10px;
+  .bnx-profile-name {
+    font-size: 2rem;
   }
   
   .bnx-profile-card {
-    padding: 20px;
+    padding: 30px 20px;
+    margin: 0 20px;
+  }
+  
+  .bnx-profile-field-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
   }
   
   .bnx-profile-edit-actions {
-    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bnx-profile-avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+  }
+  
+  .bnx-profile-name {
+    font-size: 1.8rem;
+  }
+  
+  .bnx-profile-field {
+    padding: 15px;
   }
 } 

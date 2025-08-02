@@ -3,13 +3,14 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getProfile } from '../services/api';
 import api from '../services/api';
 import "./EntrepreneurProfile.css";
 
 const EntrepreneurProfile = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [editing, setEditing] = useState(null);
   const [editValues, setEditValues] = useState({});
@@ -37,6 +38,10 @@ const EntrepreneurProfile = () => {
       });
       setProfile(response.data);
       setEditing(null);
+      // Update localStorage if it's the current user's profile
+      if (isOwnProfile && field === 'name') {
+        localStorage.setItem('userName', response.data.name);
+      }
     } catch (err) {
       console.error('Error updating profile:', err);
     } finally {
@@ -47,6 +52,11 @@ const EntrepreneurProfile = () => {
   const handleCancel = () => {
     setEditing(null);
     setEditValues(profile);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/login');
   };
 
   if (!profile) return (
@@ -65,7 +75,13 @@ const EntrepreneurProfile = () => {
           {isOwnProfile && !isEditing && (
             <Button 
               className="bnx-btn-md" 
-              style={{ background: '#7f9cf5', color: 'white', padding: '4px 12px' }}
+              style={{ 
+                background: '#7f9cf5', 
+                color: 'white', 
+                padding: '6px 12px',
+                fontSize: '0.85rem',
+                minWidth: '60px'
+              }}
               onClick={() => handleEdit(field)}
             >
               Edit
@@ -80,7 +96,7 @@ const EntrepreneurProfile = () => {
                 value={editValues[field] || ''}
                 onChange={(e) => setEditValues(prev => ({ ...prev, [field]: e.target.value }))}
                 className="bnx-profile-textarea"
-                rows={4}
+                rows={3}
               />
             ) : (
               <InputField
@@ -118,74 +134,45 @@ const EntrepreneurProfile = () => {
   return (
     <DashboardLayout>
       <div className="bnx-profile-container">
-        <section className="bnx-about-section">
-          <div className="bnx-container">
-            <div className="bnx-row bnx-align-items-center">
-              <div className="bnx-col-lg-6">
-                <div className="bnx-about-avatar">
-                  <div className="bnx-profile-avatar-placeholder">
-                    {profile.name ? profile.name.charAt(0).toUpperCase() : 'E'}
-                  </div>
-                </div>
-              </div>
-              <div className="bnx-col-lg-6">
-                <div className="bnx-about-text">
-                  <h3 className="bnx-dark-color">About Me</h3>
-                  <h6 className="bnx-theme-color bnx-lead">Entrepreneur & Startup Founder</h6>
-                  <p>
-                    I <mark>innovate and build</mark> solutions that address real-world problems, 
-                    specializing in creating scalable business models and disruptive technologies. 
-                    My passion is to transform ideas into successful ventures that make a positive impact.
-                  </p>
-                  <div className="bnx-row bnx-about-list">
-                    <div className="bnx-col-md-6">
-                      <div className="bnx-media">
-                        <label>Name</label>
-                        <p>{profile.name || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Startup</label>
-                        <p>{profile.startup || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Funding Need</label>
-                        <p>{profile.fundingNeed || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Location</label>
-                        <p>Global</p>
-                      </div>
-                    </div>
-                    <div className="bnx-col-md-6">
-                      <div className="bnx-media">
-                        <label>E-mail</label>
-                        <p>{profile.email || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Phone</label>
-                        <p>{profile.phone || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Experience</label>
-                        <p>5+ Years</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Status</label>
-                        <p>Active</p>
-                      </div>
-                    </div>
-                  </div>
+        <Card className="bnx-profile-card">
+          <div className="bnx-profile-layout">
+            {/* Left Side - Profile Picture */}
+            <div className="bnx-profile-picture-section">
+              <div className="bnx-profile-avatar">
+                <div className="bnx-profile-avatar-placeholder">
+                  {profile.name ? profile.name.charAt(0).toUpperCase() : 'E'}
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+            
+            {/* Right Side - Profile Details */}
+            <div className="bnx-profile-details-section">
+              <div className="bnx-profile-header">
+                <h2 className="bnx-profile-name">{profile.name}</h2>
+                <p className="bnx-profile-role">Entrepreneur</p>
+              </div>
+              
+              <div className="bnx-profile-fields">
+                {renderField('email', 'Email')}
+                {renderField('bio', 'Bio', 'textarea')}
+                {renderField('startup', 'Startup')}
+                {renderField('startupDescription', 'Startup Description', 'textarea')}
+                {renderField('fundingNeed', 'Funding Need')}
+                {renderField('pitchDeck', 'Pitch Deck Link')}
+              </div>
 
-        <Card className="bnx-profile-card">
-          <div className="bnx-profile-content">
-            {renderField('bio', 'Bio', 'textarea')}
-            {renderField('startupDescription', 'Startup Description', 'textarea')}
-            {renderField('pitchDeck', 'Pitch Deck Link')}
+              {/* Logout Section */}
+              {isOwnProfile && (
+                <div className="bnx-profile-logout-section">
+                  <button 
+                    className="bnx-profile-logout-button"
+                    onClick={handleLogout}
+                  >
+                    Logout Account
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </Card>
       </div>

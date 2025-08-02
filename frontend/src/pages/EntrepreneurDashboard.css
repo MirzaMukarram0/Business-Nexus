@@ -52,4 +52,18 @@
   font-size: 1rem;
   color: #e0e6f7;
   margin-bottom: 12px;
+}
+
+/* Analytics section spacing */
+.bnx-dashboard-root .analytics-dashboard {
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Responsive adjustments for analytics */
+@media (max-width: 768px) {
+  .bnx-dashboard-root .analytics-dashboard {
+    margin-bottom: 30px;
+  }
 } 

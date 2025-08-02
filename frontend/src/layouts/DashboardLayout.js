@@ -81,15 +81,6 @@ const DashboardLayout = ({ children }) => {
         case 'messages':
           navigate('/dashboard/investor?tab=messages');
           break;
-        case 'portfolio':
-          navigate('/dashboard/investor?tab=portfolio');
-          break;
-        case 'analytics':
-          navigate('/dashboard/investor?tab=analytics');
-          break;
-        case 'settings':
-          navigate('/dashboard/investor?tab=settings');
-          break;
         case 'profile':
           const userId = localStorage.getItem('userId');
           navigate(`/profile/investor/${userId}`);
@@ -182,24 +173,6 @@ const DashboardLayout = ({ children }) => {
               onClick={() => handleTabClick('messages')}
             >
               Messages
-            </button>
-            <button 
-              className={`bnx-navbar-link ${activeTab === 'portfolio' ? 'active' : ''}`}
-              onClick={() => handleTabClick('portfolio')}
-            >
-              Portfolio
-            </button>
-            <button 
-              className={`bnx-navbar-link ${activeTab === 'analytics' ? 'active' : ''}`}
-              onClick={() => handleTabClick('analytics')}
-            >
-              Analytics
-            </button>
-            <button 
-              className={`bnx-navbar-link ${activeTab === 'settings' ? 'active' : ''}`}
-              onClick={() => handleTabClick('settings')}
-            >
-              Settings
             </button>
           </div>
         )}

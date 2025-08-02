@@ -11,5 +11,7 @@ router.patch('/request/:id', auth, requestController.updateRequestStatus); // Pr
 router.post('/entrepreneur-requests', auth, requestController.postEntrepreneurRequest);
 router.get('/entrepreneur-requests', auth, requestController.getEntrepreneurRequests);
 router.delete('/entrepreneur-requests/:id', auth, requestController.deleteEntrepreneurRequest);
+router.get('/entrepreneur-analytics', auth, requestController.getEntrepreneurAnalytics);
+router.get('/investor-analytics', auth, requestController.getInvestorAnalytics);
 
 module.exports = router;

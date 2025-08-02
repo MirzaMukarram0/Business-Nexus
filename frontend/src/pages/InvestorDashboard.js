@@ -3,6 +3,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
+import InvestorAnalyticsDashboard from "../components/InvestorAnalyticsDashboard";
 import { sendRequest, getConversations } from '../services/api';
 import api from '../services/api';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -76,6 +77,11 @@ const InvestorDashboard = () => {
   return (
     <DashboardLayout>
       <div className="bnx-dashboard-root">
+        {/* Analytics Dashboard - Only show on entrepreneurs tab */}
+        {activeTab === 'entrepreneurs' && (
+          <InvestorAnalyticsDashboard />
+        )}
+        
         {activeTab === 'entrepreneurs' && (
           <>
             <h2 className="bnx-dashboard-title">Entrepreneurs</h2>
@@ -277,42 +283,6 @@ const InvestorDashboard = () => {
                   <p>Click on any "Message" button to start a conversation.</p>
                 </div>
               )}
-            </div>
-          </>
-        )}
-
-        {activeTab === 'portfolio' && (
-          <>
-            <h2 className="bnx-dashboard-title">My Portfolio</h2>
-            <div className="bnx-dashboard-list">
-              <div style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
-                <p>Portfolio management features coming soon.</p>
-                <p>Track your investments and performance metrics here.</p>
-              </div>
-            </div>
-          </>
-        )}
-
-        {activeTab === 'analytics' && (
-          <>
-            <h2 className="bnx-dashboard-title">Analytics Dashboard</h2>
-            <div className="bnx-dashboard-list">
-              <div style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
-                <p>Analytics and reporting features coming soon.</p>
-                <p>View detailed insights about your investment activities.</p>
-              </div>
-            </div>
-          </>
-        )}
-
-        {activeTab === 'settings' && (
-          <>
-            <h2 className="bnx-dashboard-title">Settings</h2>
-            <div className="bnx-dashboard-list">
-              <div style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
-                <p>Settings and preferences coming soon.</p>
-                <p>Manage your account settings and preferences here.</p>
-              </div>
             </div>
           </>
         )}

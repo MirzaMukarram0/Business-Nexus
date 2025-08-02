@@ -3,13 +3,14 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getProfile } from '../services/api';
 import api from '../services/api';
 import "./InvestorProfile.css";
 
 const InvestorProfile = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState(null);
   const [editing, setEditing] = useState(null);
   const [editValues, setEditValues] = useState({});
@@ -37,6 +38,10 @@ const InvestorProfile = () => {
       });
       setProfile(response.data);
       setEditing(null);
+      // Update localStorage if it's the current user's profile
+      if (isOwnProfile && field === 'name') {
+        localStorage.setItem('userName', response.data.name);
+      }
     } catch (err) {
       console.error('Error updating profile:', err);
     } finally {
@@ -47,6 +52,11 @@ const InvestorProfile = () => {
   const handleCancel = () => {
     setEditing(null);
     setEditValues(profile);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/login');
   };
 
   if (!profile) return (
@@ -65,7 +75,13 @@ const InvestorProfile = () => {
           {isOwnProfile && !isEditing && (
             <Button 
               className="bnx-btn-md" 
-              style={{ background: '#7f9cf5', color: 'white', padding: '4px 12px' }}
+              style={{ 
+                background: '#7f9cf5', 
+                color: 'white', 
+                padding: '6px 12px',
+                fontSize: '0.85rem',
+                minWidth: '60px'
+              }}
               onClick={() => handleEdit(field)}
             >
               Edit
@@ -80,7 +96,7 @@ const InvestorProfile = () => {
                 value={editValues[field] || ''}
                 onChange={(e) => setEditValues(prev => ({ ...prev, [field]: e.target.value }))}
                 className="bnx-profile-textarea"
-                rows={4}
+                rows={3}
               />
             ) : (
               <InputField
@@ -121,74 +137,43 @@ const InvestorProfile = () => {
   return (
     <DashboardLayout>
       <div className="bnx-profile-container">
-        <section className="bnx-about-section">
-          <div className="bnx-container">
-            <div className="bnx-row bnx-align-items-center">
-              <div className="bnx-col-lg-6">
-                <div className="bnx-about-avatar">
-                  <div className="bnx-profile-avatar-placeholder">
-                    {profile.name ? profile.name.charAt(0).toUpperCase() : 'I'}
-                  </div>
-                </div>
-              </div>
-              <div className="bnx-col-lg-6">
-                <div className="bnx-about-text">
-                  <h3 className="bnx-dark-color">About Me</h3>
-                  <h6 className="bnx-theme-color bnx-lead">Angel Investor & Venture Capitalist</h6>
-                  <p>
-                    I <mark>invest and mentor</mark> promising startups and entrepreneurs, 
-                    specializing in early-stage investments and strategic guidance. 
-                    My passion is to support innovative ideas and help them grow into successful businesses.
-                  </p>
-                  <div className="bnx-row bnx-about-list">
-                    <div className="bnx-col-md-6">
-                      <div className="bnx-media">
-                        <label>Name</label>
-                        <p>{profile.name || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Investment Focus</label>
-                        <p>{profile.investmentInterests || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Portfolio Size</label>
-                        <p>{profile.portfolio && profile.portfolio.length > 0 ? `${profile.portfolio.length} companies` : 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Location</label>
-                        <p>Global</p>
-                      </div>
-                    </div>
-                    <div className="bnx-col-md-6">
-                      <div className="bnx-media">
-                        <label>E-mail</label>
-                        <p>{profile.email || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Phone</label>
-                        <p>{profile.phone || 'Not specified'}</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Experience</label>
-                        <p>10+ Years</p>
-                      </div>
-                      <div className="bnx-media">
-                        <label>Status</label>
-                        <p>Active</p>
-                      </div>
-                    </div>
-                  </div>
+        <Card className="bnx-profile-card">
+          <div className="bnx-profile-layout">
+            {/* Left Side - Profile Picture */}
+            <div className="bnx-profile-picture-section">
+              <div className="bnx-profile-avatar">
+                <div className="bnx-profile-avatar-placeholder">
+                  {profile.name ? profile.name.charAt(0).toUpperCase() : 'I'}
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+            
+            {/* Right Side - Profile Details */}
+            <div className="bnx-profile-details-section">
+              <div className="bnx-profile-header">
+                <h2 className="bnx-profile-name">{profile.name}</h2>
+                <p className="bnx-profile-role">Investor</p>
+              </div>
+              
+              <div className="bnx-profile-fields">
+                {renderField('email', 'Email')}
+                {renderField('bio', 'Bio', 'textarea')}
+                {renderField('investmentInterests', 'Investment Interests', 'textarea')}
+                {renderField('portfolio', 'Portfolio Companies')}
+              </div>
 
-        <Card className="bnx-profile-card">
-          <div className="bnx-profile-content">
-            {renderField('bio', 'Bio', 'textarea')}
-            {renderField('investmentInterests', 'Investment Interests', 'textarea')}
-            {renderField('portfolio', 'Portfolio Companies')}
+              {/* Logout Section */}
+              {isOwnProfile && (
+                <div className="bnx-profile-logout-section">
+                  <button 
+                    className="bnx-profile-logout-button"
+                    onClick={handleLogout}
+                  >
+                    Logout Account
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </Card>
       </div>

@@ -35,4 +35,8 @@ export const updateRequestStatus = (requestId, status) => api.patch(`/request/${
 // Profile APIs
 export const getProfile = (id) => api.get(`/profile/${id}`);
 
+// Analytics APIs
+export const getEntrepreneurAnalytics = () => api.get('/entrepreneur-analytics');
+export const getInvestorAnalytics = () => api.get('/investor-analytics');
+
 export default api; 

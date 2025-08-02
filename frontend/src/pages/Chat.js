@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
 import Avatar from '../components/Avatar';
+import DashboardLayout from '../layouts/DashboardLayout';
 import './Chat.css';
 
 const socket = io('http://localhost:5000');
@@ -54,41 +55,43 @@ const Chat = () => {
   };
 
   return (
-    <div className="bnx-chat-root">
-      <Card className="bnx-card-chat">
-        <div className="bnx-chat-header">
-          <Avatar src="/avatar.png" alt={otherUser.name} />
-          <span className="bnx-chat-username">{otherUser.name}</span>
-          <span className={`bnx-chat-status ${online ? 'online' : 'offline'}`}>{online ? 'Online' : 'Offline'}</span>
-        </div>
-        <div className="bnx-chat-messages">
-          {messages.map((msg, idx) => {
-            const isSentByMe = String(msg.senderId._id || msg.senderId) === String(user.id);
-            return (
-              <div key={idx} className={`bnx-chat-message ${isSentByMe ? 'sent' : 'received'}`}> 
-                <div className="bnx-chat-meta">
-                  <Avatar src="/avatar.png" alt={isSentByMe ? user.name : otherUser.name} />
-                  <span className="bnx-chat-sender">{isSentByMe ? 'You' : otherUser.name}</span>
-                  <span className="bnx-chat-timestamp">{new Date(msg.timestamp).toLocaleTimeString()}</span>
+    <DashboardLayout>
+      <div className="bnx-chat-root">
+        <Card className="bnx-card-chat">
+          <div className="bnx-chat-header">
+            <Avatar src="/avatar.png" alt={otherUser.name} />
+            <span className="bnx-chat-username">{otherUser.name}</span>
+            <span className={`bnx-chat-status ${online ? 'online' : 'offline'}`}>{online ? 'Online' : 'Offline'}</span>
+          </div>
+          <div className="bnx-chat-messages">
+            {messages.map((msg, idx) => {
+              const isSentByMe = String(msg.senderId._id || msg.senderId) === String(user.id);
+              return (
+                <div key={idx} className={`bnx-chat-message ${isSentByMe ? 'sent' : 'received'}`}> 
+                  <div className="bnx-chat-meta">
+                    <Avatar src="/avatar.png" alt={isSentByMe ? user.name : otherUser.name} />
+                    <span className="bnx-chat-sender">{isSentByMe ? 'You' : otherUser.name}</span>
+                    <span className="bnx-chat-timestamp">{new Date(msg.timestamp).toLocaleTimeString()}</span>
+                  </div>
+                  <div className="bnx-chat-bubble">{msg.message}</div>
                 </div>
-                <div className="bnx-chat-bubble">{msg.message}</div>
-              </div>
-            );
-          })}
-          <div ref={messagesEndRef} />
-        </div>
-        <form className="bnx-chat-input-row" onSubmit={handleSend}>
-          <InputField
-            className="bnx-chat-input"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Type a message..."
-            autoFocus
-          />
-          <Button type="submit" className="bnx-btn-gradient bnx-btn-chat">Send</Button>
-        </form>
-      </Card>
-    </div>
+              );
+            })}
+            <div ref={messagesEndRef} />
+          </div>
+          <form className="bnx-chat-input-row" onSubmit={handleSend}>
+            <InputField
+              className="bnx-chat-input"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              placeholder="Type a message..."
+              autoFocus
+            />
+            <Button type="submit" className="bnx-btn-gradient bnx-btn-chat">Send</Button>
+          </form>
+        </Card>
+      </div>
+    </DashboardLayout>
   );
 };
 
