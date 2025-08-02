@@ -22,13 +22,18 @@ const authRoutes = require('./routes/auth');
 const profileRoutes = require('./routes/profile');
 const requestRoutes = require('./routes/request');
 const chatRoutes = require('./routes/chat');
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', message: 'Backend is running' });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api', profileRoutes);
 app.use('/api', requestRoutes);
 app.use('/api/chat', chatRoutes);
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://ahmedmukarram6:mukarram12@cluster0.xcczudo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+mongoose.connect(process.env.MONGO_URI || "mongodb+srv://ahmedmukarram6:mukarram12@cluster0.xcczudo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
