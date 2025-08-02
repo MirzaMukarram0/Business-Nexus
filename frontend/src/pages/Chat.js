@@ -9,7 +9,7 @@ import Avatar from '../components/Avatar';
 import DashboardLayout from '../layouts/DashboardLayout';
 import './Chat.css';
 
-const socket = io('http://localhost:5000');
+const socket = io(process.env.REACT_APP_API_URL || 'http://localhost:5000');
 
 const Chat = () => {
   const { userId } = useParams();

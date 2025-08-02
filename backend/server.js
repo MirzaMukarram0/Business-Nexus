@@ -12,7 +12,10 @@ const server = http.createServer(app);
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  credentials: true
+}));
 
 // Import routes (to be added later)
 const authRoutes = require('./routes/auth');
