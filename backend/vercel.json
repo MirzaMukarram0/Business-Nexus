@@ -13,9 +13,9 @@
     }
   ],
   "env": {
-    "MONGO_URI": "@mongo-uri",
-    "JWT_SECRET": "@jwt-secret",
-    "CORS_ORIGIN": "@cors-origin",
+    "MONGO_URI": "MONGO_URI",
+    "JWT_SECRET": "JWT_SECRET",
+    "CORS_ORIGIN": "CORS_ORIGIN",
     "PORT": "5000"
   }
 } 

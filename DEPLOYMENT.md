@@ -152,6 +152,7 @@ This will start both frontend (port 3000) and backend (port 5000).
 3. **CORS**: Update CORS_ORIGIN to match your frontend domain
 4. **JWT Secret**: Use a strong, random secret for production
 5. **Build Process**: Vercel will automatically build both frontend and backend
+6. **Vercel Environment Variables**: Set environment variables directly in Vercel dashboard, not as secrets
 
 ## Troubleshooting
 
