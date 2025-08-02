@@ -3,7 +3,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import AnalyticsDashboard from "../components/AnalyticsDashboard";
-import { getRequests, updateRequestStatus, getMessages, getConversations } from '../services/api';
+import { getRequests, updateRequestStatus, getConversations } from '../services/api';
 import api from '../services/api';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import "./EntrepreneurDashboard.css";

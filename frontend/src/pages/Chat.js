@@ -15,9 +15,9 @@ const Chat = () => {
   const { userId } = useParams();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [user, setUser] = useState({ id: localStorage.getItem('userId'), name: localStorage.getItem('userName') });
-  const [otherUser, setOtherUser] = useState({ id: userId, name: 'User' }); // Optionally fetch name
-  const [online, setOnline] = useState(true); // Mock online status
+  const [user] = useState({ id: localStorage.getItem('userId'), name: localStorage.getItem('userName') });
+  const [otherUser] = useState({ id: userId, name: 'User' }); // Optionally fetch name
+  const [online] = useState(true); // Mock online status
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
