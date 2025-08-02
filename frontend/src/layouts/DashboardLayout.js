@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import "./DashboardLayout.css";
 
@@ -19,7 +19,7 @@ const DashboardLayout = ({ children }) => {
   const effectiveRole = (role || getUserTypeFromURL())?.toLowerCase();
   
   // Determine active tab based on URL parameters and pathname
-  const getActiveTab = () => {
+  const getActiveTab = useCallback(() => {
     if (location.pathname.includes('/post-request')) return 'post-request';
     if (location.pathname.includes('/profile')) return 'profile';
     
@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }) => {
     if (effectiveRole === 'investor') return 'entrepreneurs';
     
     return 'home';
-  };
+  }, [location.pathname, searchParams, effectiveRole]);
 
   const [activeTab, setActiveTab] = useState(getActiveTab());
 
