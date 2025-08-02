@@ -28,6 +28,6 @@
     }
   ],
   "env": {
-    "REACT_APP_API_URL": "@react-app-api-url"
+    "REACT_APP_API_URL": "react-app"
   }
 } 
