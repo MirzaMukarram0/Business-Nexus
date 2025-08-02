@@ -46,7 +46,7 @@ const users = [
 ];
 
 async function seed() {
-  await mongoose.connect(process.env.MONGO_URI, {
+  await mongoose.connect("mongodb+srv://ahmedmukarram6:mukarram12@cluster0.xcczudo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
