@@ -40,24 +40,33 @@ REACT_APP_API_URL=https://your-backend-domain.vercel.app
 
 #### Option A: Deploy via Vercel Dashboard
 
-1. **Connect GitHub Repository**:
+**Backend Deployment:**
+1. **Deploy Backend First**:
    - Go to [vercel.com](https://vercel.com)
    - Click "New Project"
    - Import your GitHub repository
+   - Set the root directory to `backend`
+       - Configure Environment Variables:
+      - `MONGO_URI`: Your MongoDB connection string
+      - `JWT_SECRET`: Your JWT secret key
+      - `CORS_ORIGIN`: Your frontend URL (will be set after frontend deployment)
+      - `PORT`: 5000 (or leave empty for Vercel to auto-assign)
 
-2. **Configure Environment Variables**:
-   - In your Vercel project settings, go to "Environment Variables"
-   - Add the following variables:
-     - `MONGO_URI`: Your MongoDB connection string
-     - `JWT_SECRET`: Your JWT secret key
-     - `CORS_ORIGIN`: Your frontend URL (will be set after deployment)
+**Frontend Deployment:**
+2. **Deploy Frontend**:
+   - Create another project in Vercel
+   - Import the same GitHub repository
+   - Set the root directory to `frontend`
+   - Configure Environment Variables:
+     - `REACT_APP_API_URL`: Your backend URL (from step 1)
 
-3. **Deploy**:
-   - Vercel will automatically detect the `vercel.json` configuration
-   - The build will create both frontend and backend
+3. **Update CORS Origin**:
+   - Go back to your backend project settings
+   - Update `CORS_ORIGIN` to your frontend URL
 
 #### Option B: Deploy via Vercel CLI
 
+**Backend Deployment:**
 1. **Install Vercel CLI**:
    ```bash
    npm i -g vercel
@@ -68,30 +77,57 @@ REACT_APP_API_URL=https://your-backend-domain.vercel.app
    vercel login
    ```
 
-3. **Deploy**:
+3. **Deploy Backend**:
    ```bash
+   cd backend
    vercel
    ```
 
-4. **Set Environment Variables**:
+4. **Set Backend Environment Variables**:
    ```bash
    vercel env add MONGO_URI
    vercel env add JWT_SECRET
+   vercel env add CORS_ORIGIN
+   vercel env add PORT
    ```
 
-### 3. Update Frontend API URL
+**Frontend Deployment:**
+5. **Deploy Frontend**:
+   ```bash
+   cd frontend
+   vercel
+   ```
 
-After deployment, update your frontend environment variable:
+6. **Set Frontend Environment Variables**:
+   ```bash
+   vercel env add REACT_APP_API_URL
+   ```
 
-```env
-REACT_APP_API_URL=https://your-backend-url.vercel.app
-```
+### 3. Update Environment Variables
 
-### 4. Redeploy Frontend
+After both deployments are complete:
 
-After updating the environment variable, redeploy the frontend:
+1. **Update Frontend API URL**:
+   - Go to your frontend project settings
+   - Update `REACT_APP_API_URL` to your backend URL
+   - Redeploy frontend
+
+2. **Update Backend CORS Origin**:
+   - Go to your backend project settings
+   - Update `CORS_ORIGIN` to your frontend URL
+   - Redeploy backend
+
+### 4. Redeploy Both Projects
+
+After updating environment variables:
 
 ```bash
+# Redeploy frontend
+cd frontend
+vercel --prod
+
+# Redeploy backend
+cd backend
 vercel --prod
 ```
 

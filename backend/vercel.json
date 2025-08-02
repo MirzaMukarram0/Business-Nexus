@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "MONGO_URI": "@mongo-uri",
+    "JWT_SECRET": "@jwt-secret",
+    "CORS_ORIGIN": "@cors-origin",
+    "PORT": "5000"
+  }
+} 

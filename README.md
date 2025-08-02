@@ -34,7 +34,12 @@ This will start both frontend (port 3000) and backend (port 5000).
 
 ## 📦 Deployment
 
-For deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+This project uses separate deployments for frontend and backend:
+
+- **Frontend**: Deployed as a static site on Vercel
+- **Backend**: Deployed as a serverless function on Vercel
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## 🛠️ Tech Stack
 
