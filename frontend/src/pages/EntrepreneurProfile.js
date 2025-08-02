@@ -139,18 +139,18 @@ const EntrepreneurProfile = () => {
             {/* Left Side - Profile Picture */}
             <div className="bnx-profile-picture-section">
               <div className="bnx-profile-avatar">
-                <div className="bnx-profile-avatar-placeholder">
-                  {profile.name ? profile.name.charAt(0).toUpperCase() : 'E'}
+                  <div className="bnx-profile-avatar-placeholder">
+                    {profile.name ? profile.name.charAt(0).toUpperCase() : 'E'}
+                  </div>
                 </div>
               </div>
-            </div>
             
             {/* Right Side - Profile Details */}
             <div className="bnx-profile-details-section">
               <div className="bnx-profile-header">
                 <h2 className="bnx-profile-name">{profile.name}</h2>
                 <p className="bnx-profile-role">Entrepreneur</p>
-              </div>
+                      </div>
               
               <div className="bnx-profile-fields">
                 {renderField('email', 'Email')}
@@ -159,7 +159,7 @@ const EntrepreneurProfile = () => {
                 {renderField('startupDescription', 'Startup Description', 'textarea')}
                 {renderField('fundingNeed', 'Funding Need')}
                 {renderField('pitchDeck', 'Pitch Deck Link')}
-              </div>
+                      </div>
 
               {/* Logout Section */}
               {isOwnProfile && (
